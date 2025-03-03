@@ -59,9 +59,9 @@ This project integrates multiple AI domains:
 
 ## Usage
 
-- Upload or paste your story into the application.
-- The system will analyze, generate, and stylize images based on the text.
-- View and download the final visual storytelling output.
+- First run the code as instructed in the notebook
+- The system will analyze, generate, and stylize images based on the text you input in the UI.
+- We can see the stylized image and original image and alongwith it some parameters on which model tries to decide the style.
 
 
 
