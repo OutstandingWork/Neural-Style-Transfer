@@ -241,12 +241,21 @@ img = tf.nn.avg_pool(img, ksize=[3,3], strides=[1,1], padding='SAME')
 
 ```mermaid
 graph LR
-    A[Text Prompt] --> B(Stable Diffusion)
-    B --> C[Content Image]
-    D[Style Image] --> E(Style Encoder)
-    C --> F(Style Transfer)
-    E --> F
-    F --> G[Stylized Output]
+    A[Text Prompt] --> B(Sentence Tokenizer)
+    B --> C{Scene Text}
+    C --> D(Analyzes Mood)
+    D --> E{Chosen Style}
+    E --> F[Style Image URL]
+    F --> G(Load Style Image)
+    G --> H[Style Image]
+    H --> I(Style Encoder)
+    I --> J[Style Embedding]
+    C --> K(Stable Diffusion)
+    K --> L[Content Image]
+    L --> M(Style Transfer)
+    J --> M
+    M --> N[Stylized Output]
+
 ```
 
 
@@ -311,14 +320,51 @@ Magenta's model offers:
 
 ```mermaid
 graph TD
-    A[User Input] --> B(Text Processing)
-    B --> C(Style Detection)
-    C --> D{Model Selection}
-    D --> E[Image Generation]
-    D --> F[Style Transfer]
-    E --> G(Image Postprocessing)
-    F --> G
-    G --> H[UI Rendering]
+    A[User Story Input] --> B(Sentence Tokenization)
+    B --> C[Individual Scenes]
+    C --> D{NLP Analysis}
+    
+    subgraph NLP Analysis
+        D --> E[Emotion Classification]
+        D --> F[Keyword Matching]
+        D --> G[Semantic Similarity]
+        E --> H[Emotion Confidence Score]
+        F --> I[Keyword Matches]
+        G --> J[Style Description Similarity]
+        H --> K(Combine Scores)
+        I --> K
+        J --> K
+        K --> L[Selected Style]
+    end
+    
+    L --> M[Style Image URL]
+    M --> N[Load Style Image]
+    N --> O[Preprocessed Style Image]
+    
+    subgraph Image Generation
+        C --> P[Stable Diffusion 2.1]
+        P --> Q[Raw Content Image]
+        Q --> R[Resize to 256x256]
+    end
+    
+    subgraph Style Transfer
+        O --> S[TF Hub Style Transfer]
+        R --> S
+        S --> T[Styled Output]
+    end
+    
+    subgraph UI Components
+        T --> U[Gradio Gallery]
+        Q --> U
+        K --> V[Analysis Details Display]
+    end
+    
+    style A fill:#e1f5fe,stroke:#01579b
+    style D fill:#f0f4c3,stroke:#827717
+    style P fill:#ffcdd2,stroke:#c62828
+    style S fill:#c8e6c9,stroke:#2e7d32
+    style U fill:#f3e5f5,stroke:#6a1b9a
+
 ```
 
 
