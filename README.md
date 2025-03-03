@@ -1,4 +1,4 @@
-# AI-Powered Visual Storytelling Pipeline
+# Dynamic Story Visualizer
 
 ## Overview
 
