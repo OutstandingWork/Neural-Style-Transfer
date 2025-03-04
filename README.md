@@ -3,7 +3,7 @@
 ## Overview
 
 This project integrates multiple AI models into a creative pipeline that transforms story text into stylized images. It combines natural language processing, deep learning, and computer vision to generate visually compelling storytelling experiences.
-
+Can check on this link for sample run : [https://drive.google.com/file/d/1r6hvnWOaFw290M92w9S1Qim3lkon0NfR/view?usp=sharing](url)
 ## Pipeline Structure
 
 ### 1. Text Analysis Pipeline
